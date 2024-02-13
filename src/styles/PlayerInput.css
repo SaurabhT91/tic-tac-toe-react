@@ -1,0 +1,8 @@
+/* PlayerInput.css */
+#instructions {
+    margin-top: 20px;
+}
+
+#instructions input {
+    margin: 0 5px;
+}
