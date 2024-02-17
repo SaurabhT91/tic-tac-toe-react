@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { configureStore } from "@reduxjs/toolkit";
 import PlayerInput from './components/PlayerInput';
 import GameBoard from './components/GameBoard';
 import Message from './components/MessageBox';
