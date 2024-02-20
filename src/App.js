@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import { configureStore } from "@reduxjs/toolkit";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
 import PlayerInput from './components/PlayerInput';
 import GameBoard from './components/GameBoard';
+import { setPlayer1Name, setPlayer2Name } from './features/playerDetails/playerSlice';
 import Message from './components/MessageBox';
 import './App.css';
 
+
+
 function App() {
-  const [player1Name, setPlayer1Name] = useState('');
-  const [player2Name, setPlayer2Name] = useState('');
   const [fragments, setFragments] = useState(Array(9).fill(''));
   const [message, setMessage] = useState('');
   const [showMessage, setShowMessage] = useState(false);
@@ -16,13 +18,17 @@ function App() {
   const [turn, setTurn] = useState(true);
   const [count, setCount] = useState(0);
 
-  const handlePlayer1NameChange = (event) => {
-    setPlayer1Name(event.target.value);
-  };
+    const player1Name = useSelector((state) => state.players.player1Name);
+    const player2Name = useSelector((state) => state.players.player2Name);
+    const dispatch = useDispatch();
 
-  const handlePlayer2NameChange = (event) => {
-    setPlayer2Name(event.target.value);
-  };
+    const handlePlayer1NameChange = (event) => {
+      dispatch(setPlayer1Name(event.target.value));
+    };
+
+    const handlePlayer2NameChange = (event) => {
+      dispatch(setPlayer2Name(event.target.value));
+    };
 
   const handleClick = (index) => {
     if (fragments[index] === '' && winner === null) {
